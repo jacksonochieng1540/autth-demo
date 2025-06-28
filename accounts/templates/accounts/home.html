@@ -1,0 +1,21 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4 mb-4">Welcome {% if user.is_authenticated %}{{ user.username }}{% else %}Guest{% endif %}!</h1>
+    
+    {% if user.is_authenticated %}
+        <div class="d-grid gap-2 col-md-6 mx-auto">
+            <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+            <a href="#" class="btn btn-secondary">View Profile</a>
+        </div>
+    {% else %}
+        <div class="d-grid gap-2 col-md-6 mx-auto">
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+            <a href="{% url 'register' %}" class="btn btn-success">Register</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
